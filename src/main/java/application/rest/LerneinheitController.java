@@ -49,6 +49,7 @@ public class LerneinheitController {
 	@RequestMapping(value="/{id}/medium/", method=RequestMethod.GET)
 	public List<Medium> getAllMedienByLerneinheitID(@PathVariable("id") String id){
 		
+		return lerneinheitRepositiory.findBy
 	}
 	
 	
