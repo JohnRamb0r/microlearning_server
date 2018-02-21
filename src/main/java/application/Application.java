@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+import application.util.FolderFunctions;
 import application.util.TestDatenGenerator;
 
 @SpringBootApplication
@@ -41,12 +41,21 @@ public class Application implements CommandLineRunner {
 	    TestDatenGenerator testDatenGenerator;
 	    
 	    public static void main(String[] args) {
+	    	
+	    	
 	        SpringApplication.run(Application.class);
 	    }
 
 	    @Override
 	    public void run(String... strings) throws Exception {
-	    	log.info("Hello World!");   
+	    	log.info("Hello World!"); 
+	    	
+	    	FolderFunctions ff = new FolderFunctions();
+	    	
+	    	ff.createFolder("PENIS");
+	    	
+	    	log.info(ff.fullPath("hey"));
+	    	log.info(ff.doesFolderExist(ff.fullPath("hey"))+"");
 	    	
 	    	testDatenGenerator.generateTestData();
 	    	

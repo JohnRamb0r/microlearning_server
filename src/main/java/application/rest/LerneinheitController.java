@@ -26,6 +26,10 @@ public class LerneinheitController {
 	LerneinheitRepository lerneinheitRepository;
 	
 
+	/**
+	 * @param no params needed
+	 * @return all Lerneinheiten-Objects in the Database.
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Lerneinheit> getAllLerneinheiten(){
 		List<Lerneinheit> lerneinheiten = new ArrayList<Lerneinheit>();
