@@ -29,6 +29,15 @@ public class Medium {
 		this.reihenfolge = reihenfolge;
 	}
 	
+	public Medium(String dateiname, String datei, String beschreibung){
+		super();
+		this.typ="Bild";
+		this.dateiname = dateiname;
+		this.datei = datei;
+		this.beschreibung = beschreibung;
+		this.reihenfolge = -1;
+	}
+	
 	public int getReihenfolge() {
 		return reihenfolge;
 	}

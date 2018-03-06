@@ -61,8 +61,12 @@ public class LerneinheitController {
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
 	public void deleteLerneinheit(@PathVariable("id") String id){
+		try{
+			lerneinheitRepository.delete(Long.parseLong(id));
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 		
-		lerneinheitRepository.delete(Long.parseLong(id));
 	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
