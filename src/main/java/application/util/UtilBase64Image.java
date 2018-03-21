@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.util.Base64;
  
 public class UtilBase64Image {
+	
+	/**
+	 * Eine Bildatei wird übergeben und in das Base64 Format gebracht.
+	 * @param imagePath (String) 
+	 * @return Kodiertes Bild (String)
+	 */
 	public static String encoder(String imagePath) {
 	    File file = new File(imagePath);
 	    try (FileInputStream imageInFile = new FileInputStream(file)) {
@@ -24,7 +30,11 @@ public class UtilBase64Image {
 	    }
 	    return null;
 	}
-	
+	/**
+	 * Ein base64-kodiertes Bild wird zu einem Bild umgewandelt und in einem übergebenem Pfad abgespeichert
+	 * @param 1. base64Image (String), 2. pathfile (String)
+	 * @return -
+	 */
 	public static void decoder(String base64Image, String pathFile) {
 	    try (FileOutputStream imageOutFile = new FileOutputStream(pathFile)) {
 	        // Converting a Base64 String into Image byte array

@@ -27,8 +27,8 @@ public class LerneinheitController {
 	
 
 	/**
-	 * @param no params needed
-	 * @return all Lerneinheiten-Objects in the Database.
+	 * @param -
+	 * @return Alle Lerneinheiten werden aus der Datenbank zurückgegeben.
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Lerneinheit> getAllLerneinheiten(){
@@ -38,21 +38,32 @@ public class LerneinheitController {
 		
 		return lerneinheiten;
 	}
-	
+
+	/**
+	 * @param id (String) des Lehrenden
+	 * @return Alle Lerneinheiten des Lehrenden werden aus der Datenbank zurückgegeben.
+	 */
 	@RequestMapping(value="/lehrende/{id}", method=RequestMethod.GET)
 	public List<Lerneinheit> getAllLerneinheitenByLehrendeID(@PathVariable("id") String id){
 		
 		
 		return lerneinheitRepository.findByLehrende_id(Long.parseLong(id));
 	}
+	/**
+	 * @param id (String) des Lehrenden
+	 * @return Alle Medien des Lehrenden werden aus der Datenbank zurückgegeben.
+	 */
+//	@RequestMapping(value="/{id}/medium/", method=RequestMethod.GET)
+//	public List<Medium> getAllMedienByLerneinheitID(@PathVariable("id") String id){
+//		
+//		return lerneinheitRepositiory.findBy
+//	}
 	
-	@RequestMapping(value="/{id}/medium/", method=RequestMethod.GET)
-	public List<Medium> getAllMedienByLerneinheitID(@PathVariable("id") String id){
-		
-		return lerneinheitRepositiory.findBy
-	}
-	
-	
+	/**
+	 * Hinzufügen einer Lerneinheit.
+	 * @param l (Lerneinheit)
+	 * @return -
+	 */
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public Lerneinheit addLerneinheit(@RequestBody Lerneinheit l){
 		
@@ -60,6 +71,11 @@ public class LerneinheitController {
 		return lerneinheitRepository.save(l);
 	}
 	
+	/**
+	 * Eine Lerneinheit wird aufgrund ihrer ID gelöscht.
+	 * @param id (String) der Lerneinheit
+	 * @return -.
+	 */
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
 	public void deleteLerneinheit(@PathVariable("id") String id){
 		try{
@@ -69,7 +85,11 @@ public class LerneinheitController {
 		}
 		
 	}
-	
+	/**
+	 * Eine Lerneinheit wird editiert.
+	 * @param 1. l (Lerneinheit), 2. id (String) der Lerneinheit
+	 * @return -
+	 */
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
 	public void editLerneinheit(@RequestBody Lerneinheit l, @PathVariable("id") String id){
 				

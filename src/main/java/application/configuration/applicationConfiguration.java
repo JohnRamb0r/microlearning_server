@@ -24,6 +24,8 @@ public class applicationConfiguration extends WebMvcConfigurerAdapter {
 //        };
 //    }
 	
+	
+	//Erlaubt den Zugriff von Localhost mit den Ports: 8081 und 35729
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 

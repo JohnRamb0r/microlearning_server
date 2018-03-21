@@ -13,7 +13,10 @@ public class AbschnittController {
 	
 	@Autowired
 	AbschnittRepository abschnittRepository;
-
+	
+	
+	//Editiert einen Abschnitt
+	//Paramater: ID (String) des Abschnittes, Abschnitt-Objekt
 	@RequestMapping("/{id}")
 	public void editAbschnitt(@PathVariable("id") String id, Abschnitt a){
 		Abschnitt result = abschnittRepository.findOne(Long.parseLong(id));
