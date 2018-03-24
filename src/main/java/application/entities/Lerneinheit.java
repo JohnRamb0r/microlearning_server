@@ -24,6 +24,10 @@ public class Lerneinheit {
 	@JoinColumn(name="LERNEINHEIT_ID")
 	private List<Abschnitt> abschnitte;
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="LERNEINHEIT_ID")
+	private List<Wissensueberpruefung> wissensueberpruefung;
+
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="LEHRENDE_ID")
 	private Lehrende lehrende;
@@ -66,6 +70,14 @@ public class Lerneinheit {
 
 	public void setAbschnitte(List<Abschnitt> abschnitte) {
 		this.abschnitte = abschnitte;
+	}
+	
+	public List<Wissensueberpruefung> getWissensueberpruefung() {
+		return wissensueberpruefung;
+	}
+
+	public void setWissensueberpruefung(List<Wissensueberpruefung> wissensueberpruefung) {
+		this.wissensueberpruefung = wissensueberpruefung;
 	}
 
 }

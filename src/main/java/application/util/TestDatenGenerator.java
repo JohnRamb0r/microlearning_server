@@ -7,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import application.entities.Abschnitt;
+import application.entities.Antwort;
+import application.entities.Erklaerbild;
 import application.entities.Lehrende;
 import application.entities.Lerneinheit;
+import application.entities.Lueckentext;
+import application.entities.MultipleChoice;
+import application.entities.Wissensueberpruefung;
 import application.repos.LerneinheitRepository;
 
 @Component
@@ -40,6 +45,42 @@ public class TestDatenGenerator {
 		a2.setWissensueberpruefung(null);
 		abschnittListe.add(a2);
 		l.setAbschnitte(abschnittListe);
+		
+		List<Wissensueberpruefung> fragenListe = new ArrayList<Wissensueberpruefung>();
+		MultipleChoice m = new MultipleChoice();
+		m.setAufgabenstellung("5+5");
+		m.setErgaenzungstext("Errechnen Sie die oben angeführte Gleichung!");
+		m.setIstMehrfachauswahlZulaessig(false);
+		m.setIstRichtigeAntwortauswahlVorhanden(true);
+		m.setReihenfolge(3);
+		m.setSchwierigkeit(2);
+		ArrayList<Antwort> antworten = new ArrayList<Antwort>();
+		Antwort a1 = new Antwort(true, "10");
+		Antwort b1 = new Antwort(false, "5");
+		Antwort c1 = new Antwort(false, "123");
+		Antwort d1 = new Antwort(false, "5w3453q");
+		antworten.add(a1);
+		antworten.add(b1);
+		antworten.add(c1);
+		antworten.add(d1);
+		m.setAntworten(antworten);
+		
+		fragenListe.add(m);
+		
+		Lueckentext lText = new Lueckentext();
+		lText.setAufgabenstellung("Vervollständigen Sie bitte die leeren Felder");
+		lText.setErgaenzungstext("Asdf asdf");
+		lText.setReihenfolge(4);
+		lText.setSchwierigkeit(1);
+		lText.setText("asdf asdf [[asdf]] asdf wwerwrw wrw wer[[sdfa]]");
+		
+		fragenListe.add(lText);
+		
+		Erklaerbild e = new Erklaerbild("//Dokumente/d.png", "Schönes Bild", "Ein sehr schönes Bild");
+		
+		//e.setAufgabenstellung();
+		
+		l.setWissensueberpruefung(fragenListe);
 		
 		l.setBeschreibung("Beschreibung ASDF");
 		l.setTitel("Das ist ein Titel");

@@ -14,6 +14,11 @@ public class Antwort {
 	private Boolean istRichtig;
 	private String text;
 	
+	public Antwort(Boolean istRichtig, String text) {
+		super();
+		this.istRichtig = istRichtig;
+		this.text = text;
+	}
 	public Long getId() {
 		return id;
 	}

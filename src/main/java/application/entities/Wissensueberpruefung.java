@@ -19,6 +19,14 @@ public class Wissensueberpruefung {
 	private Long id;
 	private String aufgabenstellung;
 	private String ergaenzungstext;
+	private int reihenfolge;
+	
+	public int getReihenfolge() {
+		return reihenfolge;
+	}
+	public void setReihenfolge(int reihenfolge) {
+		this.reihenfolge = reihenfolge;
+	}
 	/**
 	 * schwierigkeitsgrad der wissensüberprüfung soll 1-3 sein
 	 * 1 ist leicht, 2 mittel und 3 schwer.
