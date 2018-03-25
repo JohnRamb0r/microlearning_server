@@ -27,10 +27,48 @@ public class Lerneinheit {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="LERNEINHEIT_ID")
 	private List<Wissensueberpruefung> wissensueberpruefung;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="LERNEINHEIT_ID")
+	private List<MultipleChoice> multipleChoice;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="LERNEINHEIT_ID")
+	private List<Lueckentext> lueckenText;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="LERNEINHEIT_ID")
+	private List<Erklaerbild> erklaerBild;
 
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="LEHRENDE_ID")
 	private Lehrende lehrende;
+	
+	
+
+	public List<MultipleChoice> getMultipleChoice() {
+		return multipleChoice;
+	}
+
+	public void setMultipleChoice(List<MultipleChoice> multipleChoice) {
+		this.multipleChoice = multipleChoice;
+	}
+
+	public List<Lueckentext> getLueckenText() {
+		return lueckenText;
+	}
+
+	public void setLueckenText(List<Lueckentext> lueckenText) {
+		this.lueckenText = lueckenText;
+	}
+
+	public List<Erklaerbild> getErklaerBild() {
+		return erklaerBild;
+	}
+
+	public void setErklaerBild(List<Erklaerbild> erklaerBild) {
+		this.erklaerBild = erklaerBild;
+	}
 
 	public Lehrende getLehrende() {
 		return lehrende;

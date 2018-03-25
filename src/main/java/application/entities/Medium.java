@@ -19,7 +19,9 @@ public class Medium {
 	private String beschreibung;
 	private int reihenfolge;
 	
-	
+	public Medium(){
+		
+	}
 	
 	
 	public Medium(String dateiname, String datei, int reihenfolge) {

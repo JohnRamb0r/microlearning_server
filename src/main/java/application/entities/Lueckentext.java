@@ -1,5 +1,8 @@
 package application.entities;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Lueckentext extends Wissensueberpruefung{
 	
 	private String text;

@@ -1,12 +1,14 @@
 package application.entities;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+@Entity
 public class MultipleChoice extends Wissensueberpruefung{
 
 	
@@ -17,12 +19,12 @@ public class MultipleChoice extends Wissensueberpruefung{
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="MULTIPLECHOICE_ID")
-	private ArrayList<Antwort> antworten = new ArrayList<Antwort>();
+	private List<Antwort> antworten;
 	
-	public ArrayList<Antwort> getAntworten() {
+	public List<Antwort> getAntworten() {
 		return antworten;
 	}
-	public void setAntworten(ArrayList<Antwort> antworten) {
+	public void setAntworten(List<Antwort> antworten) {
 		this.antworten = antworten;
 	}
 	public boolean isIstMehrfachauswahlZulaessig() {

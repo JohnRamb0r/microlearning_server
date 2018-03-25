@@ -16,29 +16,27 @@ public class Abschnitt {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	private String titel;
 	private String inhalt;
 	private int reihenfolge;
 	
 	
+	
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="MEDIUM_ID")
+	@JoinColumn(name="ABSCHNITT_ID")
 	private List<Medium> media;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="WISSENSUEBERPRUEFUNG_ID")
-	private List<Wissensueberpruefung> Wissensueberpruefung;
 	
 	
-	public List<Wissensueberpruefung> getWissensueberpruefung() {
-		return Wissensueberpruefung;
+	
+	public String getTitel() {
+		return titel;
 	}
 
-	public void setWissensueberpruefung(List<Wissensueberpruefung> wissensueberpruefung) {
-		Wissensueberpruefung = wissensueberpruefung;
+	public void setTitel(String titel) {
+		this.titel = titel;
 	}
 
-	
-	
 	public Long getId() {
 		return id;
 	}
