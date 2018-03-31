@@ -33,8 +33,8 @@ public class Application implements CommandLineRunner {
 	    	
 	    	ff.createFolder("EXAMPLE FOLDER");
 	    	
-	    	log.info(ff.fullPath("hey"));
-	    	log.info(ff.doesFolderExist(ff.fullPath("hey"))+"");
+	    	log.info(ff.getFullPath("hey"));
+	    	log.info(ff.doesFolderExist(ff.getFullPath("hey"))+"");
 	    	
 	    	testDatenGenerator.generateTestData();
 	    	

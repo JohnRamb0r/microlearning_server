@@ -19,6 +19,7 @@ public class Erklaerbild extends Wissensueberpruefung{
 	//Zur Zeit nur ein Medium möglich, aber in Zukunft sollen mehrere Bilder möglich sein.
 	//Eager, weil es durch lazy zu spät geladen werden würden --> fehler!
 	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="MEDIUM_ID")
 	private Medium media;
 	
 	@OneToMany(cascade=CascadeType.ALL)

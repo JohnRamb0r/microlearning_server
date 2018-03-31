@@ -9,6 +9,6 @@ public interface LerneinheitRepository extends CrudRepository<Lerneinheit,Long>{
 
 	List<Lerneinheit> findByLehrende_id(long parseLong);
 
-
+	
 
 }

@@ -101,9 +101,9 @@ public class TestDatenGenerator {
 		
 		ebListe.add(e);
 		
-		l.setMultipleChoice(mcListe);
-		l.setLueckenText(ltListe);
-		l.setErklaerBild(ebListe);
+		l.setMultipleChoices(mcListe);
+		l.setLueckenTexte(ltListe);
+		l.setErklaerBilder(ebListe);
 		
 		
 		l.setBeschreibung("Beschreibung ASDF");

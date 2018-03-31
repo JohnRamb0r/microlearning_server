@@ -30,15 +30,15 @@ public class Lerneinheit {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="LERNEINHEIT_ID")
-	private List<MultipleChoice> multipleChoice;
+	private List<MultipleChoice> multipleChoices;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="LERNEINHEIT_ID")
-	private List<Lueckentext> lueckenText;
+	private List<Lueckentext> lueckenTexte;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="LERNEINHEIT_ID")
-	private List<Erklaerbild> erklaerBild;
+	private List<Erklaerbild> erklaerBilder;
 
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="LEHRENDE_ID")
@@ -46,28 +46,28 @@ public class Lerneinheit {
 	
 	
 
-	public List<MultipleChoice> getMultipleChoice() {
-		return multipleChoice;
+	public List<MultipleChoice> getMultipleChoices() {
+		return multipleChoices;
 	}
 
-	public void setMultipleChoice(List<MultipleChoice> multipleChoice) {
-		this.multipleChoice = multipleChoice;
+	public void setMultipleChoices(List<MultipleChoice> multipleChoices) {
+		this.multipleChoices = multipleChoices;
 	}
 
-	public List<Lueckentext> getLueckenText() {
-		return lueckenText;
+	public List<Lueckentext> getLueckenTexte() {
+		return lueckenTexte;
 	}
 
-	public void setLueckenText(List<Lueckentext> lueckenText) {
-		this.lueckenText = lueckenText;
+	public void setLueckenTexte(List<Lueckentext> lueckenTexte) {
+		this.lueckenTexte = lueckenTexte;
 	}
 
-	public List<Erklaerbild> getErklaerBild() {
-		return erklaerBild;
+	public List<Erklaerbild> getErklaerBilder() {
+		return erklaerBilder;
 	}
 
-	public void setErklaerBild(List<Erklaerbild> erklaerBild) {
-		this.erklaerBild = erklaerBild;
+	public void setErklaerBilder(List<Erklaerbild> erklaerBilder) {
+		this.erklaerBilder = erklaerBilder;
 	}
 
 	public Lehrende getLehrende() {

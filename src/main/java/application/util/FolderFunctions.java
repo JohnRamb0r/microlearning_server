@@ -13,7 +13,7 @@ public class FolderFunctions {
 	 * @return -
 	 */
 	public static void createFolder(String foldername){
-		String fullPath = fullPath(foldername);
+		String fullPath = getFullPath(foldername);
 		
 		if(!doesFolderExist(foldername)){
 			File dir = new File(fullPath);
@@ -26,7 +26,7 @@ public class FolderFunctions {
 	 * @return true falls er existiert, false wenn der Ordner nicht existiert (Boolean)
 	 */
 	public static Boolean doesFolderExist(String foldername){
-		String fullPath = fullPath(foldername);
+		String fullPath = getFullPath(foldername);
 		
 		File file = new File(fullPath);
 		
@@ -40,7 +40,7 @@ public class FolderFunctions {
 	 * @param Foldername (String) 
 	 * @return Kompletten Folderpfad (String)
 	 */
-	public static String fullPath(String foldername){
+	public static String getFullPath(String foldername){
 		return path + foldername+"/";
 	}
 	

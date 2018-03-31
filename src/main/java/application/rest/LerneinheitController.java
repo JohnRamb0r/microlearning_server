@@ -3,6 +3,9 @@ package application.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import application.entities.Abschnitt;
+import application.entities.Erklaerbild;
+import application.entities.Lehrende;
 import application.entities.Lerneinheit;
 import application.entities.Medium;
+import application.repos.LehrendeRepository;
 import application.repos.LerneinheitRepository;
+import application.util.FolderFunctions;
+import application.util.UtilBase64Image;
 
 
 @RestController
@@ -26,6 +35,9 @@ public class LerneinheitController {
 	LerneinheitRepository lerneinheitRepository;
 	
 
+	@Autowired
+	LehrendeRepository lehrendeRepository;
+	
 	/**
 	 * @param -
 	 * @return Alle Lerneinheiten werden aus der Datenbank zurückgegeben.
@@ -69,6 +81,101 @@ public class LerneinheitController {
 		
 		System.out.println(l.getAbschnitte());
 		return lerneinheitRepository.save(l);
+	}
+	
+	/**
+	 * Hinzufügen einer Lerneinheit.
+	 * @param l (Lerneinheit)
+	 * @return -
+	 */
+	@RequestMapping(value="/add/{id}", method=RequestMethod.POST, produces = "application/json")
+	public Lerneinheit addLerneinheitByLehrendeID(@PathVariable("id") String id, @RequestBody Lerneinheit l){
+		
+		try{
+			
+			
+		}catch(Exception e){
+			
+		}
+		
+		try{
+			
+			List<Abschnitt> abschnitte = l.getAbschnitte();
+			
+			for(Abschnitt a : abschnitte){
+				
+				//Für den Anfang, gibt es nur eine Bilddatei, daher get(0)
+				String[] base64String = a.getMedia().get(0).getDatei().split(",");
+				String dateiname = a.getMedia().get(0).getDateiname();
+				String lerneinheitName = l.getTitel();
+				String fullPath = FolderFunctions.getFullPath(lerneinheitName);
+				String fullPathWithData = fullPath + dateiname;
+				
+				FolderFunctions.createFolder(lerneinheitName);
+				
+				UtilBase64Image.decoder(base64String[1], fullPathWithData);
+				
+				Medium m = a.getMedia().get(0);
+				m.setDatei(fullPathWithData);
+				
+				List<Medium> mList = new ArrayList<Medium>();
+				mList.add(m);
+				
+				a.setMedia(mList);
+			}
+			
+
+			
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		
+		try{
+			
+			List<Erklaerbild> erklaerBilder = l.getErklaerBilder();
+			
+			System.out.println(l.getErklaerBilder().get(0).getMedia().getDatei());
+			
+			for(Erklaerbild e : erklaerBilder){
+				
+				//Für den Anfang, gibt es nur eine Bilddatei
+				String[] base64String = e.getMedia().getDatei().split(",");
+				String dateiname = e.getMedia().getDateiname();
+				String lerneinheitName = l.getTitel();
+				String fullPath = FolderFunctions.getFullPath(lerneinheitName);
+				String fullPathWithData = fullPath + dateiname;
+				
+				FolderFunctions.createFolder(lerneinheitName);
+				
+				UtilBase64Image.decoder(base64String[1], fullPathWithData);
+				
+				Medium m = e.getMedia();
+				m.setDatei(fullPathWithData);
+				
+				
+				e.setMedia(m);
+			}
+			
+			//List<Medium> mList = l.getErklaerBilder().get(0).getMedia();
+			
+			
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		
+		
+		
+		Lehrende lehrende = lehrendeRepository.findOne(Long.parseLong(id));
+		
+		//
+		
+		l.setLehrende(lehrende);
+		
+		
+		return lerneinheitRepository.save(l);
+		//return new Lerneinheit();
 	}
 	
 	/**

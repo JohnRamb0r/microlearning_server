@@ -21,7 +21,7 @@ public class Abschnitt {
 	private int reihenfolge;
 	
 	
-	
+	//Obwohl mehrere Medien möglich wären, wird zZ nur ein Bild unterstützt pro Abschnitt
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="ABSCHNITT_ID")
 	private List<Medium> media;
