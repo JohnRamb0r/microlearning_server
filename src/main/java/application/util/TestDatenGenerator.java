@@ -91,7 +91,7 @@ public class TestDatenGenerator {
 		ltListe.add(lText);
 		
 		List<Erklaerbild> ebListe = new ArrayList<Erklaerbild>();
-		Erklaerbild e = new Erklaerbild("8.jpg", "/home/john-ramb0r/Bilder/8.jpg", "Ein sehr schönes Bild");
+		Erklaerbild e = new Erklaerbild("8.jpg", "/home/john-ramb0r/da/8.jpg", "Ein sehr schönes Bild");
 		
 		e.setAntworten(antworten);
 		e.setAufgabenstellung("Was ist die richtige Antwort auf dem Bild?");

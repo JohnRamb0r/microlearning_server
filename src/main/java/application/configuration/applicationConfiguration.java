@@ -30,7 +30,7 @@ public class applicationConfiguration extends WebMvcConfigurerAdapter {
 	public void addCorsMappings(CorsRegistry registry) {
 
 		registry.addMapping("/**")
-				.allowedOrigins("http://localhost:8081", "http://localhost:35729")
+				.allowedOrigins("http://localhost:8081", "http://localhost:8082", "http://localhost:35729")
 				.allowedMethods("POST", "GET", "PUT", "DELETE")
 				.allowedHeaders("Content-Type")
 //				.exposedHeaders("header-1", "header-2")

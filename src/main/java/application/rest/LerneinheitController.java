@@ -50,6 +50,17 @@ public class LerneinheitController {
 		
 		return lerneinheiten;
 	}
+	
+	/**
+	 * @param id (String) der Lerneinheit
+	 * @return Eine Lerneinheit wird aus der Datenbank zurückgegeben.
+	 */
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public Lerneinheit getLerneinheitenByLerneinheitID(@PathVariable("id") String id){
+		
+		
+		return lerneinheitRepository.findOne(Long.parseLong(id));
+	}
 
 	/**
 	 * @param id (String) des Lehrenden
@@ -202,8 +213,7 @@ public class LerneinheitController {
 				
 		Lerneinheit lerneinheit = lerneinheitRepository.findOne(Long.parseLong(id));
 		//lerneinheit.setAbschnitte(l.getAbschnitte());
-		lerneinheit.setBeschreibung(l.getBeschreibung());
-		lerneinheit.setTitel(l.getTitel());
+		lerneinheit = l;
 		
 		lerneinheitRepository.save(lerneinheit);
 	}
