@@ -17,8 +17,11 @@ public class LehrendeController {
 	@Autowired
 	LehrendeRepository lehrendeRepository;
 	
-	//Gibt den Benutzernamen des Lehrenden zurück.
-	//Parameter: id (String) des Lehrenden.
+	/**
+	 * Gibt alle den Benutzernamen eines spezifischen Lehrenden zurück.
+	 * @param LehrendeID (String)
+	 * @return Benutzername des Lehrenden. (String)
+	 */
 	@RequestMapping("/{id}")
 	public String getLehrendeBenutzername(@PathVariable("id") String id){
 		Lehrende lehrende = lehrendeRepository.findOne(Long.parseLong(id));

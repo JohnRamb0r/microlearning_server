@@ -15,8 +15,13 @@ public class AbschnittController {
 	AbschnittRepository abschnittRepository;
 	
 	
-	//Editiert einen Abschnitt
-	//Paramater: ID (String) des Abschnittes, Abschnitt-Objekt
+	//
+	//Paramater: 
+	/**
+	 * Editiert einen Abschnitt
+	 * @param ID des Abschnittes (String), a (Abschnitt)
+	 * @return -
+	 */
 	@RequestMapping("/{id}")
 	public void editAbschnitt(@PathVariable("id") String id, Abschnitt a){
 		Abschnitt result = abschnittRepository.findOne(Long.parseLong(id));

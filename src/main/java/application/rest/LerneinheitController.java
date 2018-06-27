@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.entities.Abschnitt;
+import application.entities.Antwort;
 import application.entities.Erklaerbild;
 import application.entities.Lehrende;
 import application.entities.Lerneinheit;
 import application.entities.Medium;
+import application.entities.MultipleChoice;
 import application.repos.LehrendeRepository;
 import application.repos.LerneinheitRepository;
 import application.util.FolderFunctions;
@@ -39,6 +41,7 @@ public class LerneinheitController {
 	LehrendeRepository lehrendeRepository;
 	
 	/**
+	 * Gibt alle Lerneinheiten zurück.
 	 * @param -
 	 * @return Alle Lerneinheiten werden aus der Datenbank zurückgegeben.
 	 */
@@ -52,6 +55,7 @@ public class LerneinheitController {
 	}
 	
 	/**
+	 * Gibt eine spezifische Lerneinheit zurück.
 	 * @param id (String) der Lerneinheit
 	 * @return Eine Lerneinheit wird aus der Datenbank zurückgegeben.
 	 */
@@ -63,6 +67,7 @@ public class LerneinheitController {
 	}
 
 	/**
+	 * Gibt alle Lerneinheiten von einem spezifischen Lehrenden zurück.
 	 * @param id (String) des Lehrenden
 	 * @return Alle Lerneinheiten des Lehrenden werden aus der Datenbank zurückgegeben.
 	 */
@@ -73,6 +78,7 @@ public class LerneinheitController {
 		return lerneinheitRepository.findByLehrende_id(Long.parseLong(id));
 	}
 	/**
+	 * 
 	 * @param id (String) des Lehrenden
 	 * @return Alle Medien des Lehrenden werden aus der Datenbank zurückgegeben.
 	 */
@@ -85,7 +91,7 @@ public class LerneinheitController {
 	/**
 	 * Hinzufügen einer Lerneinheit.
 	 * @param l (Lerneinheit)
-	 * @return -
+	 * @return Lerneinheit
 	 */
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public Lerneinheit addLerneinheit(@RequestBody Lerneinheit l){
@@ -96,17 +102,18 @@ public class LerneinheitController {
 	
 	/**
 	 * Hinzufügen einer Lerneinheit.
-	 * @param l (Lerneinheit)
-	 * @return -
+	 * @param Lehrendeid (String), l (Lerneinheit)
+	 * @return Lerneinheit
 	 */
-	@RequestMapping(value="/add/{id}", method=RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value="/add/{id}", method=RequestMethod.POST)//, produces = "application/json")
 	public Lerneinheit addLerneinheitByLehrendeID(@PathVariable("id") String id, @RequestBody Lerneinheit l){
+		List<MultipleChoice> mcList = l.getMultipleChoices();
 		
-		try{
-			
-			
-		}catch(Exception e){
-			
+		for(MultipleChoice mc : mcList){
+			List<Antwort> antwortList = mc.getAntworten();
+			for(Antwort ant : antwortList){
+				System.out.println(ant.getText() + " " + ant.getIstRichtig());
+			}
 		}
 		
 		try{
@@ -119,15 +126,16 @@ public class LerneinheitController {
 				String[] base64String = a.getMedia().get(0).getDatei().split(",");
 				String dateiname = a.getMedia().get(0).getDateiname();
 				String lerneinheitName = l.getTitel();
-				String fullPath = FolderFunctions.getFullPath(lerneinheitName);
-				String fullPathWithData = fullPath + dateiname;
+				String fullPathWithData = FolderFunctions.getFullPathWithData(lerneinheitName, dateiname);
+				String fullOnlinePathWithData = FolderFunctions.getServerPathWithData(lerneinheitName, dateiname);
+				
 				
 				FolderFunctions.createFolder(lerneinheitName);
 				
 				UtilBase64Image.decoder(base64String[1], fullPathWithData);
 				
 				Medium m = a.getMedia().get(0);
-				m.setDatei(fullPathWithData);
+				m.setDatei(fullOnlinePathWithData);
 				
 				List<Medium> mList = new ArrayList<Medium>();
 				mList.add(m);
@@ -139,7 +147,7 @@ public class LerneinheitController {
 			
 			
 		}catch(Exception e){
-			System.out.println(e);
+			System.out.println(e + " Abschnitte");
 		}
 		
 		try{
@@ -150,20 +158,20 @@ public class LerneinheitController {
 			
 			for(Erklaerbild e : erklaerBilder){
 				
-				//Für den Anfang, gibt es nur eine Bilddatei
+				
 				String[] base64String = e.getMedia().getDatei().split(",");
 				String dateiname = e.getMedia().getDateiname();
 				String lerneinheitName = l.getTitel();
-				String fullPath = FolderFunctions.getFullPath(lerneinheitName);
-				String fullPathWithData = fullPath + dateiname;
+				String fullPathWithData = FolderFunctions.getFullPathWithData(lerneinheitName, dateiname);
+				String fullOnlinePathWithData = FolderFunctions.getServerPathWithData(lerneinheitName, dateiname);
+				
 				
 				FolderFunctions.createFolder(lerneinheitName);
 				
 				UtilBase64Image.decoder(base64String[1], fullPathWithData);
 				
 				Medium m = e.getMedia();
-				m.setDatei(fullPathWithData);
-				
+				m.setDatei(fullOnlinePathWithData);		
 				
 				e.setMedia(m);
 			}
@@ -173,7 +181,7 @@ public class LerneinheitController {
 			
 			
 		}catch(Exception e){
-			System.out.println(e);
+			System.out.println(e + " Erklärbilder");
 		}
 		
 		

@@ -1,5 +1,6 @@
 package application.entities;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,9 @@ public class Wissensueberpruefung {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@Column(columnDefinition="text")
 	private String aufgabenstellung;
+	@Column(columnDefinition="text")
 	private String ergaenzungstext;
 	private int reihenfolge;
 	

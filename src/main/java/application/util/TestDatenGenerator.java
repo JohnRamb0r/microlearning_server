@@ -36,7 +36,7 @@ public class TestDatenGenerator {
 		a.setInhalt("asadsfadsfadsfasfasdfadsfadsfdf");
 		a.setTitel("Sehr schön!");
 		List<Medium> media = new ArrayList<Medium>();
-		Medium med = new Medium("8.jpg", "/home/john-ramb0r/Bilder/8.jpg", "Ein sehr schönes Bild");
+		Medium med = new Medium("8.jpg", "http://localhost:3000/images/12.jpg", "Ein sehr schönes Bild");
 		
 		media.add(med);
 	    a.setMedia(media);
@@ -86,14 +86,23 @@ public class TestDatenGenerator {
 		lText.setErgaenzungstext("Asdf asdf");
 		lText.setReihenfolge(4);
 		lText.setSchwierigkeit(1);
-		lText.setText("asdf asdf [[asdf]] asdf wwerwrw wrw wer[[sdfa]]");
+		lText.setText("asdf asdf <input data-answer='asdf'/> asdf wwerwrw wrw wer orem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore  terror <input data-answer='terror'/>");
 		
 		ltListe.add(lText);
 		
 		List<Erklaerbild> ebListe = new ArrayList<Erklaerbild>();
-		Erklaerbild e = new Erklaerbild("8.jpg", "/home/john-ramb0r/da/8.jpg", "Ein sehr schönes Bild");
+		Erklaerbild e = new Erklaerbild("8.jpg", "http://localhost:3000/images/1234.jpg", "Ein sehr schönes Bild");
 		
-		e.setAntworten(antworten);
+		ArrayList<Antwort> antworten2 = new ArrayList<Antwort>();
+		a1 = new Antwort(true, "Müsli");
+		b1 = new Antwort(false, "5");
+		c1 = new Antwort(true, "123");
+		d1 = new Antwort(false, "käse");
+		antworten2.add(a1);
+		antworten2.add(b1);
+		antworten2.add(c1);
+		antworten2.add(d1);
+		e.setAntworten(antworten2);
 		e.setAufgabenstellung("Was ist die richtige Antwort auf dem Bild?");
 		e.setErgaenzungstext("Geben Sie die richtige Antwort ein - es stimmt nur eine");
 		e.setReihenfolge(5);
@@ -106,7 +115,7 @@ public class TestDatenGenerator {
 		l.setErklaerBilder(ebListe);
 		
 		
-		l.setBeschreibung("Beschreibung ASDF");
+		l.setBeschreibung("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
 		l.setTitel("Das ist ein Titel");
 		
 //		Lerneinheit l2 = new Lerneinheit();

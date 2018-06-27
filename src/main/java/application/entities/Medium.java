@@ -1,5 +1,6 @@
 package application.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +13,13 @@ public class Medium {
 	private Long id;
 	// Mediatyp zB Video, Audio, Bild
 	private String typ;
+	@Column(columnDefinition="text")
 	private String dateiname;
 
 	//String zum Verzeichnispfad oder beim Senden ist es noch ein Base64ImageString
+	@Column(columnDefinition="text")
 	private String datei;
+	@Column(columnDefinition="text")
 	private String beschreibung;
 	private int reihenfolge;
 	
